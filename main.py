@@ -93,5 +93,5 @@ def home():
     try:
         jsonData = vehicalDetailFromRegNumber(registration_number)
         return str(jsonData)
-     except KeyError:
+    except KeyError:
         return "invalid input "
