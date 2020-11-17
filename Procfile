@@ -1,1 +1,1 @@
-web : python scraper.py
+web: python main.py
