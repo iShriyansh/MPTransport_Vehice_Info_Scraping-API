@@ -33,34 +33,37 @@ if(len(driver.current_url)>200):
         1 : "Vehicle Technical Details",
         3 : "Vehicle Purchase Details",
     }
+    def getVehicalDetailJson(mydivs, detail_part):
+        detailedVehicalData = {}
+        for i in range(len(detail_part)):
+            detail_key_id = list(detail_part)[i]
+            DetailsRow = mydivs.findAll("fieldset")[detail_key_id].findAll("tr")
+            jsonObject = {}
+            for i in range(0,len(DetailsRow)):
+                rowtd = DetailsRow[i].findAll('td')
+                key = rowtd[0].text.strip()
+                value = rowtd[2].text.strip()
+                jsonObject[key] = value
+                if len(rowtd) >4:         
+                    key = rowtd[4].text.strip()
+                    value = rowtd[6].text.strip()
+                    jsonObject[key] = value
+                else:
+                    pass
+            
+            detailedVehicalData[detail_part[detail_key_id]] = jsonObject
+
+        
+        
+        return detailedVehicalData 
+
+    data  = getVehicalDetailJson(mydivs,detail_part)
+    print(data)
 
     
-def getVehicalDetailJson(mydivs, detail_part):
-    detailedVehicalData = {}
-    for i in range(len(detail_part)):
-        detail_key_id = list(detail_part)[i]
-        DetailsRow = mydivs.findAll("fieldset")[detail_key_id].findAll("tr")
-        jsonObject = {}
-        for i in range(0,len(DetailsRow)):
-            rowtd = DetailsRow[i].findAll('td')
-            key = rowtd[0].text.strip()
-            value = rowtd[2].text.strip()
-            jsonObject[key] = value
-            if len(rowtd) >4:         
-                key = rowtd[4].text.strip()
-                value = rowtd[6].text.strip()
-                jsonObject[key] = value
-            else:
-                pass
-        
-        detailedVehicalData[detail_part[detail_key_id]] = jsonObject
+ 
 
-        
-        
-    return detailedVehicalData  
 
-data  = getVehicalDetailJson(mydivs,detail_part)
-print(data)
         
 
 
