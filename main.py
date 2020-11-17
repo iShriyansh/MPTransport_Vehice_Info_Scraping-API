@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import os
 
 import flask
-from flask import request
+from flask import request,jsonify
 
 
 def getVehicalDetailJson(mydivs, detail_part):
@@ -91,7 +91,8 @@ def home():
     
     registration_number = request.args['reg_number']
     try:
-        jsonData = vehicalDetailFromRegNumber(registration_number)
-        return str(jsonData)
+        dictData = vehicalDetailFromRegNumber(registration_number)
+        jsonData = jsonify(dictData)
+        return jsonData
     except KeyError:
         return "invalid input "
