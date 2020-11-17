@@ -1,12 +1,13 @@
 from selenium import webdriver
-import time
+import os
 
-browser = webdriver.Firefox()
-browser.get("http://www.prudential.com.hk/PruServlet?module=fund&purpose=searchHistFund&fundCd=MMFU_U")
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no--sandbox")
 
-elem = browser.find_element_by_xpath('//*[@id="disclaimer"]/div/div')
-elem.click()
-time.sleep(0.2)
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=chrome_options)
 
-elem = browser.find_element_by_xpath("//*")
-print(elem.get_attribute("outerHTML"))
+driver.get("https://www.google.com")
+print(driver.page_source)
