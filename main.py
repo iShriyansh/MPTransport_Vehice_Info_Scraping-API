@@ -75,13 +75,17 @@ def vehicalDetailFromRegNumber(reg_number):
 
 #rest api  
 
-app = flask.Flask(__name__)
+# app = flask.Flask(__name__)
 
-@app.route('/',methods = ['GET'])
+# @app.route('/',methods = ['GET'])
+# def home():
+#     registration_number = request.args['reg_number']
+#     try:
+#         jsonData = vehicalDetailFromRegNumber(registration_number)
+#         return str(jsonData)
+#      except KeyError:
+#         return "invalid input "
+
+@app.route('/', methods=['GET'])
 def home():
-    registration_number = request.args['reg_number']
-    try:
-        jsonData = vehicalDetailFromRegNumber(registration_number)
-        return str(jsonData)
-     except KeyError:
-        return "invalid input "
+    return "hello world"
