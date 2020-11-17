@@ -4,5 +4,5 @@ detail_part = {
     3 : "Vehicle Purchase Details",
 }
 
-for i in range(len(detail_part)):
-    print(list(detail_part)[i])
+
+print(str(detail_part))
