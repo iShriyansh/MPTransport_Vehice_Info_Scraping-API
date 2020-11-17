@@ -7,6 +7,15 @@ import flask
 from flask import request,jsonify
 
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+
 def getVehicalDetailJson(mydivs, detail_part):
     detailedVehicalData = {}
     for i in range(len(detail_part)):
@@ -33,14 +42,6 @@ def getVehicalDetailJson(mydivs, detail_part):
 
 #mock reg = MP04A2300
 def vehicalDetailFromRegNumber(reg_number):
-    
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
     driver.implicitly_wait(10)
     driver.get("http://mis.mptransport.org/MPLogin/eSewa/VehicleSearch.aspx")
