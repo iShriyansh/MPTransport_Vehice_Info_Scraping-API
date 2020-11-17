@@ -1,6 +1,8 @@
 from selenium import webdriver
 import time
 from bs4 import BeautifulSoup
+import flask
+from flask import request
 
 
 driver = webdriver.Chrome(executable_path= "/home/shriyansh/Desktop/Mp Transport/chromedriver_linux64/chromedriver")
@@ -61,8 +63,24 @@ def vehicalDetailFromRegNumber(reg_number):
     data  = getVehicalDetailJson(mydivs,detail_part)
     return data
 
-jsonData = vehicalDetailFromRegNumber("MP04A2300")
-print(jsonData)
+# jsonData = vehicalDetailFromRegNumber("MP04A2300")
+# print(jsonData)
+
+#rest api  
+
+app = flask.Flask(__name__)
+
+@app.route('/',methods = ['GET'])
+def home():
+    registration_number = request.args['reg_number']
+    try:
+        jsonData = vehicalDetailFromRegNumber(registration_number)
+        return str(jsonData)
+     except KeyError:
+        return "invalid input "
+
+
+
         
 
     
