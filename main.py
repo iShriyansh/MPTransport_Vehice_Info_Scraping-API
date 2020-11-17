@@ -75,7 +75,7 @@ def vehicalDetailFromRegNumber(reg_number):
 
 #rest api  
 
-# app = flask.Flask(__name__)
+app = flask.Flask(__name__)
 
 # @app.route('/',methods = ['GET'])
 # def home():
