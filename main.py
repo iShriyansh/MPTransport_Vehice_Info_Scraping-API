@@ -88,4 +88,10 @@ app = flask.Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "hello world"
+    
+    registration_number = request.args['reg_number']
+    try:
+        jsonData = vehicalDetailFromRegNumber(registration_number)
+        return str(jsonData)
+     except KeyError:
+        return "invalid input "
