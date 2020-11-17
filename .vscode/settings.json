@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.pythonPath": "/home/shriyansh/Desktop/Mp Transport/venv/bin/python3"
+}
