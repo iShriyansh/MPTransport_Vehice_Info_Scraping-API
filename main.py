@@ -68,7 +68,7 @@ def vehicalDetailFromRegNumber(reg_number):
             3 : "Vehicle Purchase Details",
         }
 
-    driver.close()
+    
     data  = getVehicalDetailJson(mydivs,detail_part)
 
     return data
