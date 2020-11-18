@@ -53,6 +53,7 @@ def vehicalDetailFromRegNumber(reg_number):
     driver.find_element_by_xpath("""//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr[2]/td[2]/input""").click()
 
     time.sleep(2)
+    
     if(len(driver.current_url)>200):
 
         userDetails = driver.page_source
@@ -67,8 +68,9 @@ def vehicalDetailFromRegNumber(reg_number):
             3 : "Vehicle Purchase Details",
         }
 
-
+    driver.close()
     data  = getVehicalDetailJson(mydivs,detail_part)
+
     return data
 
 # jsonData = vehicalDetailFromRegNumber("MP04A2300")
