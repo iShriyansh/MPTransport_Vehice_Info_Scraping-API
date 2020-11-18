@@ -70,7 +70,7 @@ def vehicalDetailFromRegNumber(reg_number):
 
     
     data  = getVehicalDetailJson(mydivs,detail_part)
-
+    print("sfs")
     return data
 
 # jsonData = vehicalDetailFromRegNumber("MP04A2300")
