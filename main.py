@@ -6,18 +6,15 @@ from scaper import MainClass
 
 
 
-# @app.route('/hello/<name>')
-# def hello_name(name):
-#    return 'Hello %s!' % name
-
-# if __name__ == '__main__':
-#    app.run(debug = True)
 
 
+@app.route('/', methods=['GET'])
+def VehicalDetails():
+    return "Mafiaboy Server"
+    
 
 
-
-@app.route('/vehical_details/<reg_number>', methods=['GET'])
+@app.route('/vehical_details/<reg_number>')
 def VehicalDetails(reg_number):
     
     registration_number = str(reg_number)
