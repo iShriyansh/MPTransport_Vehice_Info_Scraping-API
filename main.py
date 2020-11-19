@@ -7,6 +7,7 @@ from scaper import MainClass
 
 
 
+app = flask.Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def VehicalDetails():
@@ -25,6 +26,7 @@ def VehicalDetails(reg_number):
         return jsonData
     except KeyError:
         return "invalid input "
+    
 
 
 
