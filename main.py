@@ -23,6 +23,7 @@ def VehicalDetails(reg_number):
         m = MainClass()
         data = m.vehicalDetailFromRegNumber(registration_number)
         jsonData = jsonify(data)
+        m.driver.quit()
         return jsonData
     except KeyError:
         return "invalid input "
@@ -37,6 +38,7 @@ def license_detail():
         m = MainClass()
         data = m.getDrivingLicenseDetailsByDLNumber(number,dob)
         jsonData = jsonify(data)
+        m.driver.quit()
         return jsonData
     except KeyError:
         return "invalid input "
@@ -49,6 +51,7 @@ def l_license_detail(regNumber):
         m = MainClass()
         data = m.getLearningLicenseDetailsByDLNumber(regNumber)
         jsonData = jsonify(data)
+        m.driver.quit()
         return jsonData
     except KeyError:
         return "invalid input "
@@ -61,6 +64,7 @@ def bus_time_table(source,destination):
         m = MainClass()
         data = m.getBusesTimeTable(source,destination)
         jsonData = jsonify(data)
+        m.driver.quit()
         return jsonData
     except KeyError:
         return "invalid input "
