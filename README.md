@@ -31,3 +31,12 @@ this source code is working in both locally or in heroku
         chrome_options.add_argument("--no-sandbox")
         self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
+eg api calls - 
+https://mp-rto.herokuapp.com/vehical_details/MP04A2300
+
+https://mp-rto.herokuapp.com/bus_tt/mandla/dindori/
+
+https://mp-rto.herokuapp.com/license_details?reg_number=MP51N-2049-0064688&dob=05/11/1979
+
+https://mp-rto.herokuapp.com/l_license_details/MP07L009383/06/
+
