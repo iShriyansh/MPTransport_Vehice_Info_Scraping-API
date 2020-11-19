@@ -2,10 +2,10 @@
 
 http://mis.mptransport.org/MPLogin/eLogin.aspx
 
-Vehicle Registration Search
-Driving License Search
-Learning License Search
-Time Table Of Busses
+Vehicle Registration Search,
+Driving License Search,
+Learning License Search,
+Time Table Of Busses,
 
 Language - python
 scapper - Beautifulsoup, Selenium + chrome web_driver
