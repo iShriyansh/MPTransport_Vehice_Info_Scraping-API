@@ -14,15 +14,18 @@ import os
 class MainClass:
      
     #Test env
-    #driver = webdriver.Chrome(executable_path= "/home/shriyansh/Desktop/Mp Transport/chromedriver_linux64/chromedriver")
+    driver = None
+    def __init__(self):
+    # body of the constructor
+        #self.driver = webdriver.Chrome(executable_path= "/home/shriyansh/Desktop/Mp Transport/chromedriver_linux64/chromedriver")
     
-    #Prod env
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+        #Prod env
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     
     
     
@@ -39,9 +42,9 @@ class MainClass:
             resgistration_input = driver.find_element_by_xpath("""//*[@id="ctl00_ContentPlaceHolder1_txtRegNo"]""")
             resgistration_input.send_keys(reg_number)
             driver.find_element_by_xpath("""//*[@id="ctl00_ContentPlaceHolder1_btnShow"]""").click()
+            element = WebDriverWait(driver, 20).until(EC.invisibility_of_element((By.ID, "ctl00_ModalUpdateProgress1")))
             try:
                 #have some glitchs
-                element = WebDriverWait(driver, 20).until(EC.invisibility_of_element((By.XPATH, """"//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr/td""")))  
                 text = driver.find_element_by_xpath("""//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr/td""").text.strip()
                 if (text == "No record found......"):
                     driver.close()
@@ -49,14 +52,16 @@ class MainClass:
             except:
                 pass
             driver.find_element_by_xpath("""//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr[2]/td[2]/input""").click()
-            elementx = WebDriverWait(driver, 20).until(EC.invisibility_of_element((By.XPATH, """"//*[@id="ctl00_ContentPlaceHolder1_grvSearchSummary"]/tbody/tr/td"""))) 
+            element = WebDriverWait(driver, 20).until(EC.invisibility_of_element((By.ID, "ctl00_ModalUpdateProgress1")))
+            soup = BeautifulSoup(driver.page_source,'html.parser')
+           
             mydivs = soup.findAll("td", {"class": "Same"})[0]
             
 
-            
             try:
-                driver.close()
+                
                 return self.data_formatter.vehical_detail_formatter(mydivs)
+                driver.close()
             
             except:
                 
@@ -181,7 +186,8 @@ class MainClass:
 
 
    
-
+if __name__ == "__main__":
+    pass
 
 #MP51N-2019-0064688
 #05/11/1999
